@@ -5,6 +5,7 @@ module.exports = (sequelize, type) => {
             primaryKey: true,
             autoIncrement: true
         },
+	profile_photo: type.BLOB,
         email: type.STRING,
         password: type.STRING,
         first_name: type.STRING,
