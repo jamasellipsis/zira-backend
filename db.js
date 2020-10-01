@@ -11,7 +11,7 @@ var dbData = {
 };
 
 // Set connection with database
-const connection = new Sequelize(dbData.db_name, dbData.user, dbData.password, {
+const connection = new Sequelize('ebdb', dbData.user, dbData.password, {
     host: dbData.host,
     dialect: 'mysql'
 });
