@@ -11,18 +11,22 @@ var dbData = {
 };
 
 // Set connection with database
-const connection = new Sequelize(process.env.RDS_DB_NAME, process.env.RDS_USERNAME, process.env.RDS_PASSWORD, {
-    host: process.env.RDS_HOSTNAME,
+console.log(dbData)
+const connection = new Sequelize(dbData.db_name, dbData.user, dbData.password, {
+    host: dbData.host,
     dialect: 'mysql'
 });
 
 // Create models database
-const model = userModel(connection, Sequelize);
+const User = userModel(connection, Sequelize);
 
 // force create table and return the promise
 connection.sync({ force: false })
+    .then(() => {
+    console.log('Table created!')
+})
 
 //export the model user
 module.exports = {
-    model
+    User
 }
