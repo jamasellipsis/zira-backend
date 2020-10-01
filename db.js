@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const userModel =  require('./models/users');
 
-const sequelize = new Sequelize('ebdb', procces.env.RDS_USERNAME, process.env.RDS_PASSWORD, {
+const sequelize = new Sequelize('ebdb', process.env.RDS_USERNAME, process.env.RDS_PASSWORD, {
     dialect: 'mysql'
 });
 
