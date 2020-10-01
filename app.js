@@ -9,7 +9,7 @@ require('./db');
 const apiRouter = require('./routes/api');
 
 // Settings server
-app.set('port', process.env.PORT || 3000)
+app.set('port', process.env.RDS_PORT || 3000)
 
 // middlewares
 app.use(bodyParser.json());
