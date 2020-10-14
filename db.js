@@ -1,6 +1,10 @@
 const Sequelize = require('sequelize');
 
 const userModel =  require('./models/users');
+const classModel = require('./models/class');
+const role_user = require('./models/role_user');
+const roleModel = require('./models/role');
+const user_class = require('./models/user_class');
 
 // On the left site are the production variables and the right side are developer variables
 var dbData = {
@@ -19,6 +23,10 @@ const connection = new Sequelize(dbData.db_name, dbData.user, dbData.password, {
 
 // Create models database
 const User = userModel(connection, Sequelize);
+const Class = classModel(connection, Sequelize);
+const RoleUser = role_user(connection, Sequelize);
+const Role = roleModel(connection, Sequelize);
+const UserClass = user_class(connection, Sequelize);
 
 // force create table and return the promise
 connection.sync({ force: false })
@@ -26,7 +34,11 @@ connection.sync({ force: false })
     console.log('Table created!')
 })
 
-//export the model user
+//export the models
 module.exports = {
-    User
+    User,
+    Class,
+    RoleUser,
+    Role,
+    UserClass
 }
