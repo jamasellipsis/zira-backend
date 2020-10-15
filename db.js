@@ -34,7 +34,7 @@ User.hasMany(RoleUser, { foreignKey: 'userId', targetKey: 'id' });
 Role.hasMany(RoleUser, { foreignKey: 'roleId', targetKey: 'id' });
 // user_class
 User.hasMany(UserClass, { foreignKey: 'userId', targetKey: 'id' });
-Class.hasMany(UserClass, { foreignKey: 'ClassId', targetKey: 'id' });
+Class.hasMany(UserClass, { foreignKey: 'classId', targetKey: 'id' });
 
 // Class has one User
 Class.belongsTo(User, {
