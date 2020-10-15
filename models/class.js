@@ -16,13 +16,5 @@ module.exports = (sequelize, type) => {
         date_end: type.DATE,
         url_video: type.STRING
     });
-
-    Class.assosiate = models => {
-        Class.belongsTo(models.User, {
-            foreignKey:{
-                allowNull: false
-            }
-        });
-    };
     return Class;
 };

@@ -28,6 +28,25 @@ const RoleUser = role_user(connection, Sequelize);
 const Role = roleModel(connection, Sequelize);
 const UserClass = user_class(connection, Sequelize);
 
+// Relations
+// role_user
+User.hasMany(RoleUser, { foreignKey: 'userId', targetKey: 'id' });
+Role.hasMany(RoleUser, { foreignKey: 'roleId', targetKey: 'id' });
+// user_class
+User.hasMany(UserClass, { foreignKey: 'userId', targetKey: 'id' });
+Class.hasMany(UserClass, { foreignKey: 'ClassId', targetKey: 'id' });
+
+// Class has one User
+Class.belongsTo(User, {
+    foreignKey: {
+      name: 'teacherId',
+      allowNull:false
+    },
+    targetKey: 'id',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+  });
+
 // force create table and return the promise
 connection.sync({ force: false })
     .then(() => {

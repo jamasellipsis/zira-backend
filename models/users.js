@@ -14,17 +14,5 @@ module.exports = (sequelize, type) => {
         nick_name: type.STRING,
         birth_date: type.DATE
     });
-    
-    User.associate = (models) => {
-        User.hasMany(models.role_user, {
-            onDelete: 'cascade'
-        });
-        User.hasMany(models.user_class, {
-            onDelete: 'cascade'
-        });
-        User.hasOne(models.Class, {
-            onDelete: 'cascade'
-        });
-    }
     return User;
 };

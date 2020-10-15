@@ -8,11 +8,5 @@ module.exports = (sequelize, type) => {
         name: type.STRING,
         description: type.TEXT
     });
-
-    Role.associate = models => {
-        Role.hasMany(models.role_user, {
-            onDelete: 'cascade'
-        });
-    };
     return Role;
 };
