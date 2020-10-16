@@ -3,7 +3,7 @@ const router = require('express').Router();
 // Import models
 const { User, Role , RoleUser, UserClass, Class} = require('../../db');
 
-// get the classes a user is enrolled in
+// Get the classes a user is enrolled in
 router.get('/:userId/classes', async (req, res) => {
     const classesUser = await Class.findAll({
         include: [{
@@ -14,13 +14,13 @@ router.get('/:userId/classes', async (req, res) => {
     res.json(classesUser); 
 });
 
-// create new user 
+// Create new user 
 router.post('/', async (req, res) => {
     const user = await User.create(req.body);
     res.json(user);
 });
 
-// change user status where id
+// Change user status where id
 router.put('/delete/:userId', async (req, res) => {
     await User.update({
         status: 'Inactive'
@@ -30,7 +30,7 @@ router.put('/delete/:userId', async (req, res) => {
     res.json({success: 'The user has been deleted.'})
 });
 
-// update user where id
+// Update user where id
 router.put('/update/:userId', async (req, res) => {
     await User.update(req.body, {
         where: { id: req.params.userId }
@@ -38,7 +38,7 @@ router.put('/update/:userId', async (req, res) => {
     res.json({success: 'The user has been updated.'})
 });
 
-// get all users
+// Get all users
 router.get('/', async (req, res) => {
     const users = await User.findAll();
     res.json(users);

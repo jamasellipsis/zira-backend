@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
     res.json(class_);
 });
 
-// change class status where id
+// Change class status where id
 router.put('/delete/:classId', async (req, res) => {
     await Class.update({
         status: 'Inactive'
@@ -39,5 +39,14 @@ router.put('/delete/:classId', async (req, res) => {
     });
     res.json({success: 'The class has been deleted.'})
 });
+
+// Update class where id
+router.put('/update/:classId', async (req, res) => {
+    await Class.update(req.body, {
+        where: { id: req.params.classId }
+    });
+    res.json({success: 'The class has been updated.'})
+});
+
 
 module.exports = router;
