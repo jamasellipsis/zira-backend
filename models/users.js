@@ -11,7 +11,7 @@ module.exports = (sequelize, type) => {
         password: type.STRING,
         first_name: type.STRING,
         last_name: type.STRING,
-        nick_name: type.STRING,
+        username: type.STRING,
         birth_date: type.DATE
     });
     return User;
