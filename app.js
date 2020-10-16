@@ -17,6 +17,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //send to route api
 app.use('/api', apiRouter);
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+   });
 
 // Starting the server
 app.listen(app.get('port'), () => {
