@@ -44,4 +44,14 @@ router.get('/', async (req, res) => {
     res.json(users);
 });
 
+// Get user by nick_name
+router.get('/:nick_name', async (req, res) => {
+    const users = await User.findAll({
+        where: {
+            nick_name: req.params.nick_name
+        }
+    });
+    res.json(users);
+});
+
 module.exports = router;
