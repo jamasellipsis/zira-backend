@@ -45,10 +45,10 @@ router.get('/', async (req, res) => {
 });
 
 // Get user by nick_name
-router.get('/:nick_name', async (req, res) => {
+router.get('/:username', async (req, res) => {
     const users = await User.findAll({
         where: {
-            nick_name: req.params.nick_name
+            username: req.params.username
         }
     });
     res.json(users);
