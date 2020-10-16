@@ -3,7 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('./db');
 const app = express();
+const cors = require('cors');
 require('./db');
+
+app.use(cors())
 
 //import api router
 const apiRouter = require('./routes/api');
