@@ -48,7 +48,7 @@ Class.belongsTo(User, {
   });
 
 // force create table and return the promise
-connection.sync({ force: false })
+connection.sync({ force: true })
     .then(() => {
     console.log('Table created!')
 })
