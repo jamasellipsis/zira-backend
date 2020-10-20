@@ -1,7 +1,45 @@
+require('dotenv/config');
 const router = require('express').Router();
+const multer = require('multer');
+const AWS = require('aws-sdk');
+const { v4: uuidv4 } = require('uuid');
 
 // Import models
 const { User, Role , RoleUser, UserClass, Class} = require('../../db');
+
+// s3 key
+const s3 = new AWS.S3({
+    accessKeyId: process.env.AWS_ID,
+    secretAccessKey: process.env.AWS_SECRET
+})
+// storage image
+const storage = multer.memoryStorage({
+    destination: function(req, file, callback) {
+        callback(null, '')
+    }
+});
+const upload = multer({ storage }).single('profile_photo')
+// Create new user 
+router.post('/', upload, async (req, res) => {
+    if (req.file)
+    {
+        const file_up = req.file.originalname.split('.');
+        const file_type = file_up[file_up.length - 1]
+        const params = {
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Key: `${uuidv4()}.${file_type}`,
+            Body: req.file.buffer
+        }
+        s3.upload(params, (error, data) => {
+            if(error){
+                console.log(error)
+            }
+            console.log(data)
+        })
+    }
+    const user = await User.create(req.body);
+    res.json(user);
+});
 
 // Get the classes a user is enrolled in
 router.get('/:userId/classes', async (req, res) => {
@@ -12,12 +50,6 @@ router.get('/:userId/classes', async (req, res) => {
            }]
     });
     res.json(classesUser); 
-});
-
-// Create new user 
-router.post('/', async (req, res) => {
-    const user = await User.create(req.body);
-    res.json(user);
 });
 
 // Change user status where id
