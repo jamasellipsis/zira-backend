@@ -16,7 +16,7 @@ app.set('port', process.env.RDS_PORT || process.env.DEV_PORT)
 
 // middlewares
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //send to route api
 app.use('/api', apiRouter);

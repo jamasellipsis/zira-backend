@@ -37,7 +37,6 @@ router.post('/', upload, async (req, res) => {
             }
         })
     }
-    console.log(params)
     const user = await User.create(params ?{
         ...req.body,
         profile_photo: params.Key
