@@ -21,12 +21,12 @@ const storage = multer.memoryStorage({
 const upload = multer({ storage }).single('profile_photo')
 // Create new user 
 router.post('/', upload, async (req, res) => {
-
+    let params = null
     if (req.file)
     {
         const file_up = req.file.originalname.split('.');
         const file_type = file_up[file_up.length - 1]
-        const params = {
+        params = {
             Bucket: process.env.AWS_BUCKET_NAME,
             Key: `${uuidv4()}.${file_type}`,
             Body: req.file.buffer
@@ -37,6 +37,11 @@ router.post('/', upload, async (req, res) => {
             }
         })
     }
+    const user = await User.create(params ?{
+        ...req.body,
+        profile_photo: params.Key
+    }:req.body);
+    res.json(user);
 });
 
 // Get the classes a user is enrolled in
