@@ -9,8 +9,8 @@ const { User, Role , RoleUser, UserClass, Class} = require('../../db');
 
 // s3 key
 const s3 = new AWS.S3({
-    accessKeyId: process.env.AWS_ID,
-    secretAccessKey: process.env.AWS_SECRET
+    accessKeyId: 'AKIAIVW5737FRIQQ2ORQ',
+    secretAccessKey: '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'
 })
 // storage image
 const storage = multer.memoryStorage({
@@ -27,7 +27,7 @@ router.post('/', upload, async (req, res) => {
         const file_up = req.file.originalname.split('.');
         const file_type = file_up[file_up.length - 1]
         params = {
-            Bucket: process.env.AWS_BUCKET_NAME,
+            Bucket: 'zira-backend',
             Key: `${uuidv4()}.${file_type}`,
             Body: req.file.buffer
         }
