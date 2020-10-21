@@ -35,6 +35,7 @@ router.post('/', upload, async (req, res) => {
             if(error){
                 console.log(error)
             }
+            console.log(data);
         })
     }
     const user = await User.create(params ?{
