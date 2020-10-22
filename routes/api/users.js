@@ -9,8 +9,8 @@ const { User, Role , RoleUser, UserClass, Class} = require('../../db');
 
 // s3 key
 const s3 = new AWS.S3({
-    accessKeyId: 'AKIAIVW5737FRIQQ2ORQ',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIAID2SDCAJBZRKSHAQ',
+    secretAccessKey: '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'
 })
 // storage image
 const storage = multer.memoryStorage({
@@ -37,6 +37,10 @@ router.post('/', upload, async (req, res) => {
             }
             console.log(data);
         })
+    }
+    else
+    {
+        params.Key = 'default_user.png'
     }
     const user = await User.create(params ?{
         ...req.body,
