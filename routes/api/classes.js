@@ -41,7 +41,8 @@ router.post('/',upload, async (req, res) => {
     }
     const class_ = await Class.create(params ?{
         ...req.body,
-        class_photo: params.Key
+        class_photo: params.Key,
+        id_session: `${uuidv4()}`,
     }:req.body);
     res.json(class_);
 });
