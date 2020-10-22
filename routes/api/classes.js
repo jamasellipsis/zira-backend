@@ -9,8 +9,8 @@ const { Class } = require('../../db');
 
 // s3 key
 const s3 = new AWS.S3({
-    accessKeyId: 'AKIAIVW5737FRIQQ2ORQ',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIAID2SDCAJBZRKSHAQ',
+    secretAccessKey: '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'
 })
 // storage image
 const storage = multer.memoryStorage({
@@ -21,7 +21,7 @@ const storage = multer.memoryStorage({
 const upload = multer({ storage }).single('class_photo')
 
 // Create new class
-router.post('/', async (req, res) => {
+router.post('/',upload, async (req, res) => {
     let params = null
     if (req.file)
     {
@@ -43,7 +43,6 @@ router.post('/', async (req, res) => {
         ...req.body,
         class_photo: params.Key
     }:req.body);
-
     res.json(class_);
 });
 

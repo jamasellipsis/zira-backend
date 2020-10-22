@@ -38,10 +38,6 @@ router.post('/', upload, async (req, res) => {
             console.log(data);
         })
     }
-    else
-    {
-        params.Key = 'default_user.png'
-    }
     const user = await User.create(params ?{
         ...req.body,
         profile_photo: params.Key
