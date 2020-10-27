@@ -9,8 +9,8 @@ const { Class } = require('../../db');
 
 // s3 key
 const s3 = new AWS.S3({
-    accessKeyId: 'AKIAID2SDCAJBZRKSHAQ',
-    secretAccessKey: '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'
+    accessKeyId: ,
+    secretAccessKey: 
 })
 // storage image
 const storage = multer.memoryStorage({
