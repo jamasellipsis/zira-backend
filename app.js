@@ -12,7 +12,7 @@ app.use(cors())
 const apiRouter = require('./routes/api');
 
 // Settings server
-app.set('port', process.env.RDS_PORT || process.env.DEV_PORT)
+app.set('port', process.env.PORT || process.env.DEV_PORT)
 
 // middlewares
 app.use(bodyParser.json());
