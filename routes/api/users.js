@@ -9,8 +9,8 @@ const { User, Role , RoleUser, UserClass, Class} = require('../../db');
 
 // s3 key
 const s3 = new AWS.S3({
-    accessKeyId: process.env.AWS_ID,
-    secretAccessKey: process.env.AWS_SECRET
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 })
 // storage image
 const storage = multer.memoryStorage({
@@ -22,6 +22,8 @@ const upload = multer({ storage }).single('profile_photo')
 // Create new user 
 router.post('/', upload, async (req, res) => {
     let params = null
+    console.log(process.env.AWS_ACCESS_KEY_ID);
+    console.log(process.env.AWS_SECRET_ACCESS_KEY);
     if (req.file)
     {
         const file_up = req.file.originalname.split('.');
