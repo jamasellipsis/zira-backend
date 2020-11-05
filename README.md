@@ -9,6 +9,12 @@ Run "dev.sh" file with command "source" ["source dev.sh"].
 
 To use this you have to set the PORT in enviroment variables, if you don-t do this you will get a 502 error gateway.
 
+## Contributors
+https://github.com/AlejoCasti
+https://github.com/andergcp
+https://github.com/MiguelCF06
+https://github.com/juandsuarezz
+https://github.com/Santiago-Gallego
 
 ## Blog about the proyect
 https://www.linkedin.com/pulse/zira-santiago-andres-gallego-castillo/
